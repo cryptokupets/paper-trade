@@ -1,8 +1,8 @@
 require("mocha");
 const { assert } = require("chai");
-const { streamTrades } = require("../lib/index");
+const { streamTrades, getWorker } = require("../lib/index");
 
-describe("streamTrades", function() {
+describe.skip("streamTrades", function() {
   it("streamTrades", function(done) {
     this.timeout(500000);
     assert.isFunction(streamTrades);
@@ -41,5 +41,11 @@ describe("streamTrades", function() {
       console.log("end");
       done();
     });
+  });
+});
+
+describe("streamTrades", function() {
+  it("streamTrades", function(done) {
+    getWorker();
   });
 });

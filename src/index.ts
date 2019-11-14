@@ -1,6 +1,7 @@
 import { getTicker } from "exchange-service";
 import { streamAdvice } from "get-advice";
 import { Readable, Transform } from "stream";
+import { Worker } from "worker_threads";
 
 export interface IAdvice {
   time: string;
@@ -95,4 +96,10 @@ export function streamTrades({
   });
   rs.pipe(ts);
   return ts;
+}
+
+export function getWorker(): Worker {
+  const worker = new Worker("./lib/worker.js");
+  worker.on("message", e => console.log(e));
+  return worker;
 }
